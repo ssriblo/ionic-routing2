@@ -21,16 +21,16 @@ export class FilmsPage implements OnInit {
 
   ngOnInit() {
     this.films = this.http.get('https://swapi.dev/api/films');
-    this.films.subscribe(data => {
-      console.log('my data: ', data);
-    });
   }
 
-  openDetails() {
+  openDetails(film) {
     // Both of these would work!
     // But the standard Router is recommended.
     // this.navController.navigateForward(`/tabs/films/42`);
-    this.router.navigateByUrl(`/tabs/films/42`);
+//    this.router.navigateByUrl(`/tabs/films/42`);
+    let split = film.url.split('/');
+    let filmId = split[split.length-2];
+    this.router.navigateByUrl(`/tabs/films/${filmId}`);
   }
 
   goToPlanets() {
